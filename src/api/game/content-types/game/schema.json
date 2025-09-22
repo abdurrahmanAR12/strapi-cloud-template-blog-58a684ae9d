@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "games",
+  "info": {
+    "singularName": "game",
+    "pluralName": "games",
+    "displayName": "Game",
+    "description": "All game entries for the website"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "game.game-description",
+      "required": true
+    },
+    "minimum_requirements": {
+      "type": "component",
+      "repeatable": false,
+      "component": "system.requirement-set"
+    },
+    "recommended_requirements": {
+      "type": "component",
+      "repeatable": false,
+      "component": "system.requirement-set"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category"
+    },
+    "details": {
+      "type": "component",
+      "repeatable": false,
+      "component": "game.game-details"
+    },
+    "image_links": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.image-links"
+    },
+    "download_link": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}
