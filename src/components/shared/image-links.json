@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shared_image_links",
+  "info": {
+    "displayName": "Image Links",
+    "icon": "images"
+  },
+  "options": {},
+  "attributes": {
+    "poster": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "video_trailer": {
+      "type": "string",
+      "description": "Enter the YouTube embed URL (e.g., https://www.youtube.com/embed/your_video_id)"
+    },
+    "screenshots": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
