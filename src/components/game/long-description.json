@@ -8,11 +8,11 @@
   "options": {},
   "attributes": {
     "story": {
-      "type": "richtext",
+      "type": "text",
       "required": true
     },
     "gameplay": {
-      "type": "richtext"
+      "type": "text"
     },
     "features": {
       "type": "json"
