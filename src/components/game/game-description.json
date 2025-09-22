@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_game_game_descriptions",
+  "info": {
+    "displayName": "Game Description",
+    "icon": "align-justify",
+    "description": "Short and long descriptions for the game"
+  },
+  "options": {},
+  "attributes": {
+    "short": {
+      "type": "text",
+      "required": true,
+      "maxLength": 250
+    },
+    "long": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
