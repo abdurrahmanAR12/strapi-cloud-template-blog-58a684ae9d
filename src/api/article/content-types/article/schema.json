@@ -1,49 +1,194 @@
 {
-  "kind": "collectionType",
-  "collectionName": "articles",
-  "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "Article",
-    "description": "Create your blog content"
+  "collectionType": {
+    "kind": "collectionType",
+    "collectionName": "games",
+    "info": {
+      "singularName": "game",
+      "pluralName": "games",
+      "displayName": "Game",
+      "description": "All game entries for the website"
+    },
+    "options": {
+      "draftAndPublish": true
+    },
+    "attributes": {
+      "title": {
+        "type": "string",
+        "required": true,
+        "unique": true
+      },
+      "slug": {
+        "type": "uid",
+        "targetField": "title",
+        "required": true
+      },
+      "description": {
+        "type": "component",
+        "repeatable": false,
+        "component": "game.game-description",
+        "required": true
+      },
+      "minimum_requirements": {
+        "type": "component",
+        "repeatable": false,
+        "component": "system.requirement-set"
+      },
+      "recommended_requirements": {
+        "type": "component",
+        "repeatable": false,
+        "component": "system.requirement-set"
+      },
+      "category": {
+        "type": "relation",
+        "relation": "manyToOne",
+        "target": "api::category.category"
+      },
+      "details": {
+        "type": "component",
+        "repeatable": false,
+        "component": "game.game-details"
+      },
+      "image_links": {
+        "type": "component",
+        "repeatable": false,
+        "component": "shared.image-links"
+      },
+      "download_link": {
+        "type": "string"
+      },
+      "seo": {
+        "type": "component",
+        "repeatable": false,
+        "component": "shared.seo"
+      }
+    }
   },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "title": {
-      "type": "string"
+  "components": {
+    "game.game-description": {
+      "collectionName": "components_game_game_descriptions",
+      "info": {
+        "displayName": "Game Description",
+        "icon": "align-justify",
+        "description": "Short and long descriptions for the game"
+      },
+      "options": {},
+      "attributes": {
+        "short": {
+          "type": "text",
+          "required": true,
+          "maxLength": 250
+        },
+        "long": {
+          "type": "richtext",
+          "required": true
+        }
+      }
     },
-    "description": {
-      "type": "text",
-      "maxLength": 80
+    "game.game-details": {
+      "collectionName": "components_game_game_details",
+      "info": {
+        "displayName": "Game Details",
+        "icon": "info-circle"
+      },
+      "options": {},
+      "attributes": {
+        "game_size": {
+          "type": "string"
+        },
+        "version_number": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "last_update": {
+          "type": "string"
+        },
+        "download_count": {
+          "type": "integer",
+          "default": 0,
+          "min": 0
+        }
+      }
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
+    "shared.image-links": {
+      "collectionName": "components_shared_image_links",
+      "info": {
+        "displayName": "Image Links",
+        "icon": "images"
+      },
+      "options": {},
+      "attributes": {
+        "poster": {
+          "type": "media",
+          "multiple": false,
+          "required": true,
+          "allowedTypes": [
+            "images"
+          ]
+        },
+        "video_trailer": {
+          "type": "string",
+          "description": "Enter the YouTube embed URL (e.g., https://www.youtube.com/embed/your_video_id)"
+        },
+        "screenshots": {
+          "type": "media",
+          "multiple": true,
+          "required": false,
+          "allowedTypes": [
+            "images"
+          ]
+        }
+      }
     },
-    "cover": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images", "files", "videos"]
+    "shared.seo": {
+      "collectionName": "components_shared_seos",
+      "info": {
+        "displayName": "SEO",
+        "icon": "search",
+        "description": "Fields for Search Engine Optimization"
+      },
+      "options": {},
+      "attributes": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "maxLength": 60
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "maxLength": 160
+        },
+        "keywords": {
+          "type": "text"
+        }
+      }
     },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
-    },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "articles"
-    },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+    "system.requirement-set": {
+      "collectionName": "components_system_requirement_sets",
+      "info": {
+        "displayName": "Requirement Set",
+        "icon": "cogs"
+      },
+      "options": {},
+      "attributes": {
+        "os": {
+          "type": "string"
+        },
+        "processor": {
+          "type": "string"
+        },
+        "ram": {
+          "type": "string"
+        },
+        "video_card": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        }
+      }
     }
   }
 }
