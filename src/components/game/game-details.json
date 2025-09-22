@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_game_game_details",
+  "info": {
+    "displayName": "Game Details",
+    "icon": "info-circle"
+  },
+  "options": {},
+  "attributes": {
+    "game_size": {
+      "type": "string"
+    },
+    "version_number": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "last_update": {
+      "type": "string"
+    },
+    "download_count": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    }
+  }
+}
