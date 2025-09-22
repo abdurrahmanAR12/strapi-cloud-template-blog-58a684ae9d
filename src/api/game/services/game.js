@@ -9,24 +9,24 @@ const { createCoreService } = require('@strapi/strapi').factories;
 module.exports = createCoreService('api::game.game', ({ strapi }) => ({
 
   /**
-   * Custom service function to find a game by its ID or slug.
+   * Finds a single game using either its numeric ID or its string slug.
    * @param {string | number} identifier - The ID or slug of the game.
    */
   async findOneByIdentifier(identifier) {
-    // Determine if the identifier is a numeric ID or a string slug
+    // Check if the identifier is a number (for ID) or a string (for slug)
     const isNumeric = !isNaN(identifier) && !isNaN(parseFloat(identifier));
-    
+
     const filters = isNumeric
       ? { id: Number(identifier) }
       : { slug: identifier };
 
-    // Use the Entity Service to find the entry with deep population
+    // Find the entry using the correct filter
     const entry = await strapi.entityService.findMany('api::game.game', {
       filters: filters,
-      populate: 'deep', // Populates all components, relations, and media
+      populate: 'deep', // This populates all your components and relations
     });
 
-    // findMany returns an array, so we return the first result or null if not found
+    // findMany always returns an array, so we return the first item or null
     return entry.length > 0 ? entry[0] : null;
   }
 }));
