@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_game_long_descriptions",
+  "info": {
+    "displayName": "Long Description",
+    "icon": "paragraph",
+    "description": "The structured long-form description of a game, including story and gameplay."
+  },
+  "options": {},
+  "attributes": {
+    "story": {
+      "type": "richtext",
+      "required": true
+    },
+    "gameplay": {
+      "type": "richtext"
+    },
+    "features": {
+      "type": "json"
+    }
+  }
+}
