@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_system_requirement_sets",
+  "info": {
+    "displayName": "Requirement Set",
+    "icon": "cogs"
+  },
+  "options": {},
+  "attributes": {
+    "os": {
+      "type": "string"
+    },
+    "processor": {
+      "type": "string"
+    },
+    "ram": {
+      "type": "string"
+    },
+    "video_card": {
+      "type": "string"
+    },
+    "storage": {
+      "type": "string"
+    }
+  }
+}
