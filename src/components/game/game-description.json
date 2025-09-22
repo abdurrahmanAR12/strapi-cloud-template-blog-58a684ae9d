@@ -13,7 +13,9 @@
       "maxLength": 250
     },
     "long": {
-      "type": "richtext",
+      "type": "component",
+      "repeatable": false,
+      "component": "game.long-description",
       "required": true
     }
   }
