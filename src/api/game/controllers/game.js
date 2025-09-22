@@ -6,23 +6,25 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-// Extend the core controller
 module.exports = createCoreController('api::game.game', ({ strapi }) => ({
-  
-  // This is our custom action
-  async findOneBySlug(ctx) {
-    // 1. Get the slug from the request context (the URL parameters)
-    const { slug } = ctx.params;
 
-    // 2. Call the service to find the game by slug, ensuring deep population
-    // 'api::game.game' is the UID of our service
-    const entity = await strapi.service('api::game.game').findOneBySlug(slug);
+  /**
+   * We are overriding the default findOne controller action.
+   * This allows us to find a game by its slug OR its ID.
+   */
+  async findOne(ctx) {
+    // 'id' is the default parameter name in Strapi's routes
+    const { id: identifier } = ctx.params;
+    
+    // The service will handle the logic of finding by slug or ID
+    const entity = await strapi.service('api::game.game').findOneByIdentifier(identifier);
 
-    // 3. Use the 'transformResponse' utility to sanitize the output
-    // This removes private fields and properly formats the data for the API
+    // If no entity is found, throw a 404 error
     if (!entity) {
       return ctx.notFound('Game not found');
     }
+
+    // Sanitize and transform the response before sending it
     const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
     return this.transformResponse(sanitizedEntity);
   }
