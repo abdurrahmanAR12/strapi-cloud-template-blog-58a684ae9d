@@ -1,6 +1,6 @@
 
 module.exports = {
-  'populate-deep': {
+  'strapi-plugin-populate-deep': {
     enabled: true,
   },
 };
